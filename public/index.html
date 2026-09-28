@@ -108,3 +108,60 @@
         stroke-width: 2;
         stroke-linecap: round;
       }
+
+      
+      input {
+        width: 100%;
+        padding: 12px 12px 12px 38px;
+        font-size: 14px;
+        font-family: inherit;
+        color: #ffffff;
+        background: #0a0a0a;
+        border: 1px solid #333333;
+        border-radius: 12px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      input::placeholder {
+        color: #666666;
+      }
+
+      input:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+      }
+
+      button {
+        padding: 0 20px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        color: #000000;
+        background: #ffffff;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          background 0.2s;
+      }
+
+      button:hover {
+        background: #dcdcdc;
+      }
+
+      button:active {
+        transform: scale(0.96);
+      }
+
+      /* Hasil */
+      .hasil {
+        transition: opacity 0.25s;
+      }
+
+      .hasil.loading {
+        opacity: 0.35;
+      }
