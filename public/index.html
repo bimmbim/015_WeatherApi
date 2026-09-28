@@ -241,4 +241,63 @@
       }
     </style>
   </head>
+  <body>
+    <div class="card">
+      <div class="identitas">
+        <p class="nama">Bima Baraja</p>
+        <p class="nim">NIM 20240140015</p>
+      </div>
+
+      <h2>Cari Lokasi</h2>
+      <p class="sub">Data dari MapTiler Geocoding API</p>
+
+      <form id="form-cari">
+        <label for="input-lokasi">Lokasi</label>
+        <div class="form">
+          <div class="kolom">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+            </svg>
+            <input
+              type="text"
+              id="input-lokasi"
+              placeholder="Contoh: Bandung"
+              value="Bandung"
+              autocomplete="off"
+            />
+          </div>
+          <button type="submit">Cari</button>
+        </div>
+      </form>
+
+      <div class="hasil" id="hasil">
+        <div class="baris">
+          <span class="k">Negara</span>
+          <span class="v" id="negara">-</span>
+        </div>
+        <div class="baris">
+          <span class="k">Provinsi</span>
+          <span class="v" id="provinsi">-</span>
+        </div>
+        <div class="baris">
+          <span class="k">Kecamatan</span>
+          <span class="v" id="kecamatan">-</span>
+        </div>
+
+        <div class="koordinat">
+          <div class="kotak">
+            <span class="k">Longitude</span>
+            <span class="v" id="longitude">-</span>
+          </div>
+          <div class="kotak">
+            <span class="k">Latitude</span>
+            <span class="v" id="latitude">-</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="pesan" id="pesan"></p>
+    </div>
+
 </html>
