@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+< lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -300,4 +300,68 @@
       <p class="pesan" id="pesan"></p>
     </div>
 
+        <script>
+      const form = document.getElementById("form-cari");
+      const inputLokasi = document.getElementById("input-lokasi");
+      const pesan = document.getElementById("pesan");
+      const hasil = document.getElementById("hasil");
+
+      function isiHasil(negara, provinsi, kecamatan, longitude, latitude) {
+        document.getElementById("negara").textContent = negara;
+        document.getElementById("provinsi").textContent = provinsi;
+        document.getElementById("kecamatan").textContent = kecamatan;
+        document.getElementById("longitude").textContent = longitude;
+        document.getElementById("latitude").textContent = latitude;
+      }
+
+      async function cariLokasi(lokasi) {
+        pesan.textContent = "";
+
+        if (!lokasi.trim()) {
+          isiHasil("-", "-", "-", "-", "-");
+          pesan.textContent = "Lokasi wajib diisi";
+          return;
+        }
+
+        pesan.textContent = "Mencari...";
+        hasil.classList.add("loading");
+
+        try {
+          const response = await fetch(
+            "/api/lokasi?kota=" + encodeURIComponent(lokasi.trim()),
+          );
+          const data = await response.json();
+
+          if (!response.ok) {
+            isiHasil("-", "-", "-", "-", "-");
+            pesan.textContent = data.message;
+            return;
+          }
+
+          console.log(data);
+          isiHasil(
+            data.negara,
+            data.provinsi,
+            data.kecamatan,
+            data.longitude,
+            data.latitude,
+          );
+          pesan.textContent = data.lokasi;
+        } catch (error) {
+          console.error(error);
+          isiHasil("-", "-", "-", "-", "-");
+          pesan.textContent = "Terjadi kesalahan saat mengambil data";
+        } finally {
+          hasil.classList.remove("loading");
+        }
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        cariLokasi(inputLokasi.value);
+      });
+
+      cariLokasi(inputLokasi.value);
+    </script>
+  </body>
 </html>
